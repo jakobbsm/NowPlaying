@@ -11,15 +11,19 @@ install:
 
 script:
   - pyinstaller "nowplaying.spec"
+  - sleep 1  # Finish pyinstaller stdout
+  - ls -l dist
+  - echo "NowPlaying-${TRAVIS_TAG}-${TRAVIS_OS_NAME}.zip"
 
 before_deploy:
-  - 7z a "${PROJECT_NAME}-${TRAVIS_TAG}-${TRAVIS_OS_NAME}.zip" -r ./dist/*
+  - 7z a "NowPlaying-${TRAVIS_TAG}-${TRAVIS_OS_NAME}.zip" -r ./dist/*
+  - ls
 
 deploy:
   provider: releases
   api_key: $RELEASE_TOKEN
   file_glob: true
-  file: ${PROJECT_NAME}-${TRAVIS_TAG}-${TRAVIS_OS_NAME}.zip
+  file: NowPlaying-${TRAVIS_TAG}-${TRAVIS_OS_NAME}.zip
   draft: true
   on:
     tags: true
