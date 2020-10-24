@@ -13,13 +13,13 @@ script:
   - pyinstaller "nowplaying.spec"
 
 before_deploy:
-  - 7z a ${PROJECT_NAME}-${TRAVIS_TAG}-${TARGET}.zip -r ./dist/*
+  - 7z a "${PROJECT_NAME}-${TRAVIS_TAG}-${TRAVIS_OS_NAME}.zip" -r ./dist/*
 
 deploy:
   provider: releases
   api_key: $RELEASE_TOKEN
   file_glob: true
-  file: ${PROJECT_NAME}-${TRAVIS_TAG}-${TARGET}.zip
+  file: ${PROJECT_NAME}-${TRAVIS_TAG}-${TRAVIS_OS_NAME}.zip
   draft: true
   on:
     tags: true
