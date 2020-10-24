@@ -22,7 +22,7 @@ class GooglePlayMusicDesktopPlayer(BasePlayer):
             self.exit = True
 
     def update(self) -> None:
-        if platform.system() == 'Windowsa':
+        if platform.system() == 'Windows':
             self.read_file()
         else:
             print('Unsupported OS')  # Implement WebSocket as fallback?
