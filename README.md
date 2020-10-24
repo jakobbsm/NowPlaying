@@ -1,4 +1,5 @@
-# Currently Playing Song to File
+# NowPlaying - Currently Playing Song to File
+[![Build Status](https://travis-ci.org/jakobbsm/NowPlaying.svg?branch=master)](https://travis-ci.org/jakobbsm/NowPlaying)
 
 If you happen to be using OBS or alike and want to show the currently playing song this might be it for you.
 

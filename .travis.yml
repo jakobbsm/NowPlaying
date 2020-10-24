@@ -1,0 +1,27 @@
+os: windows
+language: shell
+
+before_install:
+  - choco install python --version=3.7
+  - python -m pip install --upgrade pip
+env: PATH=/c/Python37:/c/Python37/Scripts:$PATH
+
+install:
+  - pip install -r requirements.txt
+
+script:
+  - pyinstaller "nowplaying.spec"
+
+before_deploy:
+  - 7z a ${PROJECT_NAME}-${TRAVIS_TAG}-${TARGET}.zip -r ./dist/*
+
+deploy:
+  provider: releases
+  api_key: $RELEASE_TOKEN
+  file_glob: true
+  file: ${PROJECT_NAME}-${TRAVIS_TAG}-${TARGET}.zip
+  skip_cleanup: true
+  draft: true
+  on:
+    tags: true
+  name: $TRAVIS_TAG
